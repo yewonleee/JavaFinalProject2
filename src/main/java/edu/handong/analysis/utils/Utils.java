@@ -20,7 +20,7 @@ public class Utils {
 			}
 			
 		} catch (IOException ioe) {
-			System.out.println("File doesn't exit! Please check again...\n");
+			System.out.println("The file path does not exist. Please check your CLI argument!");
 			System.exit(0);
 		} finally {
 			try {
