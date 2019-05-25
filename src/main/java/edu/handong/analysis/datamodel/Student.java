@@ -20,7 +20,19 @@ public class Student {
 		
 	}
 	public int getNumCourseInNthSementer(int semester) {
-		return semester;
+		int year, semesterCourse, numCourseInNthSementer = 0;
+		String yearSemester;
+		
+		for (Course course : coursesTaken) {
+			year = course.getYearTaken();
+			semesterCourse = course.getSemesterCourseTaken();
+			yearSemester = String.valueOf(year) + "-" + String.valueOf(semesterCourse);
+			
+			if (semester == semestersByYearAndSemester.get(yearSemester)) {
+				numCourseInNthSementer++;
+			}
+		}
+		return numCourseInNthSementer;
 		
 	}
 
