@@ -96,8 +96,25 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: Implement this method
 		ArrayList<String> count = new ArrayList<String>();
 		
+		String sentence, student;
+		int TotalNumberOfSemestersRegistered, NumCoursesTakenInTheSemester, total;
+
+		sentence = "StudentID, TotalNumberOfSemestersRegistered, Semester, NumCoursesTakenInTheSemester";
+		count.add(sentence);
 		
+		for (String id : sortedStudents.keySet()) {
+			total = sortedStudents.get(id).getSemestersByYearAndSemester().values().size();
+			
+			for (int semester = 1; semester <= total; semester++) {
+
+				TotalNumberOfSemestersRegistered = sortedStudents.get(id).getSemestersByYearAndSemester().size();
+				NumCoursesTakenInTheSemester = sortedStudents.get(id).getNumCourseInNthSementer(semester);
+				student = id + ", " + String.valueOf(TotalNumberOfSemestersRegistered) + ", " + String.valueOf(semester) + ", " + String.valueOf(NumCoursesTakenInTheSemester);
+				count.add(student);
+			}
+
+		}
 		
-		return count; // do not forget to return a proper variable.
+		return count;
 	}
 }
