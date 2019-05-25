@@ -31,5 +31,13 @@ public class Course {
 		yearTaken = Integer.parseInt(courseList.get(7));
 		semesterCourseTaken = Integer.parseInt(courseList.get(8));
 	}
+	
+	public int getYearTaken() {
+		return yearTaken;
+	}
+	
+	public int getSemesterCourseTaken() {
+		return semesterCourseTaken;
+	}
 
 }
