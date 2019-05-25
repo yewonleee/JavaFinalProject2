@@ -10,10 +10,10 @@ public class Student {
 
 	
 	public Student(String studentId) {
-		
+		this.studentId = studentId;
 	}
 	public void addCourse(Course newRecord) {
-		
+		coursesTaken.add(newRecord);
 	}
 	public HashMap<String,Integer> getSemestersByYearAndSemester(){
 		return semestersByYearAndSemester;
