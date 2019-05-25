@@ -16,6 +16,17 @@ public class Student {
 		coursesTaken.add(newRecord);
 	}
 	public HashMap<String,Integer> getSemestersByYearAndSemester(){
+		int year, semesterCourse = 0;
+		String yearSemester;
+		int numCourse = coursesTaken.size();
+		
+		Course getCourse = coursesTaken.get(numCourse - 1);
+		year = getCourse.getYearTaken();
+		semesterCourse = getCourse.getSemesterCourseTaken();
+		yearSemester = String.valueOf(year) + "-" + String.valueOf(semesterCourse);
+		
+		semestersByYearAndSemester.put(yearSemester, semestersByYearAndSemester.size()+1);
+		
 		return semestersByYearAndSemester;
 		
 	}
