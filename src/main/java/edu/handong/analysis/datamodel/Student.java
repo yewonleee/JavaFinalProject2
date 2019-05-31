@@ -49,5 +49,20 @@ public class Student {
 		return numCourseInNthSementer;
 		
 	}
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
+
+	public ArrayList<Course> getCoursesTaken() {
+		return coursesTaken;
+	}
+
+	public void setCoursesTaken(ArrayList<Course> coursesTaken) {
+		this.coursesTaken = coursesTaken;
+	}
 
 }
