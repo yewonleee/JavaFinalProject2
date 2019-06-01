@@ -1,6 +1,5 @@
 package edu.handong.analysis.utils;
 
-import java.io.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -10,57 +9,58 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Utils {
-	public static ArrayList<String> getLines(String file, boolean removeHeader){
-		ArrayList<String> newArray = new ArrayList<String>();
-		BufferedReader br = null;
-		
-		try {
-			br = new BufferedReader(new FileReader(file));
-			String line;
-			
-			while ((line = br.readLine()) != null) {
-				if (removeHeader == true)
-					removeHeader = false;
-				else
-					newArray.add(line);
-			}
-			
-		} catch (IOException ioe) {
-			System.out.println("The file path does not exist. Please check your CLI argument!");
-			System.exit(0);
-		} finally {
+	public static void writeFile(ArrayList<String> lines, String fileName)
+	{
+		Path path = Paths.get(fileName);
+		File parent = path.toFile().getParentFile();
+		if (!parent.exists()) {
 			try {
-				if (br != null)
-					br.close();
-			} catch (Exception e) {
+				parent.mkdirs();
+			}
+			catch(Exception e) {
+				System.out.println(e.getMessage());
 			}
 		}
-		return newArray;
-		
-	}
-	
-	
-	public static void writeAFile(ArrayList<String> lines, String targetFileName) {
-		
-		File newfile = new File(targetFileName);
-		File directory = new File(newfile.getParentFile().getAbsolutePath());
-		directory.mkdirs();
-		FileWriter writer = null;
+
+		File resultFile = new File(fileName);
 		
 		try {
-			writer = new FileWriter(newfile, true);
-			for (String line : lines) {
-				writer.write(line);
-				writer.write("\n");
-				writer.flush();
-			}
-		} catch (IOException ioe) {
-		} finally {
+			PrintWriter pw = new PrintWriter(new FileOutputStream(resultFile));
+			resultFile.createNewFile();
+			pw.println("StudentID, TotalNumberOfSemestersRegistered, Semester, NumCoursesTakenInTheSemester");
+			for (String line : lines)
+				pw.println(line);
+			pw.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} 
+	}	
+	
+	public static void writeFile2(ArrayList<String> lines, String fileName) {
+		Path path = Paths.get(fileName);
+		File parentDir = path.toFile().getParentFile();
+		if (!parentDir.exists()) {
 			try {
-				if (writer != null)
-					writer.close();
-			} catch (Exception e) {
+				parentDir.mkdirs();
 			}
+			catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		File resultFile = new File(fileName);
+		
+		try {
+			PrintWriter pw = new PrintWriter(new FileOutputStream(resultFile));
+			resultFile.createNewFile();
+			pw.println("Year,Semester,CouseCode, CourseName,TotalStudents,StudentsTaken,Rate");
+			for (String str : lines)
+				pw.println(str);
+			pw.close();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

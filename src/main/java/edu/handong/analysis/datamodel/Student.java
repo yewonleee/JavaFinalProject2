@@ -18,21 +18,23 @@ public class Student {
 	public void addCourse(Course newRecord) {
 		coursesTaken.add(newRecord);
 	}
+	
 	public HashMap<String,Integer> getSemestersByYearAndSemester(){
-		int year, semesterCourse = 0;
-		String yearSemester;
-		int numCourse = coursesTaken.size();
-		
-		Course getCourse = coursesTaken.get(numCourse - 1);
-		year = getCourse.getYearTaken();
-		semesterCourse = getCourse.getSemesterCourseTaken();
-		yearSemester = String.valueOf(year) + "-" + String.valueOf(semesterCourse);
-		
-		semestersByYearAndSemester.put(yearSemester, semestersByYearAndSemester.size()+1);
-		
+		int i = 1;
+		for (Course course : coursesTaken)
+		{
+			String newString = new String();
+			newString += Integer.toString(course.getYearTaken());
+			newString += "-";
+			newString += Integer.toString(course.getSemesterCourseTaken());
+			
+			if (!semestersByYearAndSemester.containsKey(newString)){
+				semestersByYearAndSemester.put(newString, i++);
+			}
+		}
 		return semestersByYearAndSemester;
-		
 	}
+	
 	public int getNumCourseInNthSementer(int semester) {
 		int year, semesterCourse, numCourseInNthSementer = 0;
 		String yearSemester;
