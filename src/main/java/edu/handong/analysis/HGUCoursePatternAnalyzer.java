@@ -39,12 +39,12 @@ public class HGUCoursePatternAnalyzer {
 		
 		CommandLineParser parser = new DefaultParser();
 
-		String inputPath = null; // csv file to be analyzed
-		String resultPath = null; // the file path where the results are saved.
+		String inputPath = null;
+		String resultPath = null;
 		String startYear = null;
 		String endYear = null;
 		String courseCode = null;
-		int analysisType = 0;	//1: Count courses per semester, 2: Count per course name and year
+		int analysisType = 0;
 		
 		Options options = createOptions();
 		try {
