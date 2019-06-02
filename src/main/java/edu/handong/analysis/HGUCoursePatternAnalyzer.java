@@ -39,11 +39,11 @@ public class HGUCoursePatternAnalyzer {
 		
 		CommandLineParser parser = new DefaultParser();
 
-		String inputPath = null;
-		String resultPath = null;
-		String startYear = null;
-		String endYear = null;
-		String courseCode = null;
+		String inputPath;
+		String resultPath;
+		String startYear;
+		String endYear;
+		String courseCode;
 		int analysisType = 0;
 		
 		Options options = createOptions();
@@ -70,15 +70,14 @@ public class HGUCoursePatternAnalyzer {
 			System.exit(0);
 		}
 		
-		CSVParser csvParser = null;
+		CSVParser csvParser;
 		try {
 		Reader reader = Files.newBufferedReader(Paths.get(inputPath));
         csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                 .withFirstRecordAsHeader()
                 .withTrim());
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			System.out.println(e.getMessage());
 			System.exit(0);
 		}
@@ -167,11 +166,9 @@ public class HGUCoursePatternAnalyzer {
 				tempString += nSemester.toString();
 				tempString += ",";
 				tempString += student.getNumCourseInNthSementer(nSemester);
-				
 				resultStrings.add(tempString);
 			}
 		}
-		
 		return resultStrings;
 	}
 	
@@ -188,8 +185,8 @@ public class HGUCoursePatternAnalyzer {
 		for (Student item : students.values()) {
 			for (Course course : item.getCoursesTaken()) {
 				int courseYear = course.getYearTaken();
-				if (courseYear < startyear || courseYear > endyear) continue;
 				
+				if (courseYear < startyear || courseYear > endyear) continue;
 				if (yearTotalPerson.containsKey(courseYear))
 					yearTotalPerson.put(courseYear, yearTotalPerson.get(courseYear)+1);
 				else 
