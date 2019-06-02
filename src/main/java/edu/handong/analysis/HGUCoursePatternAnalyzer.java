@@ -118,7 +118,7 @@ public class HGUCoursePatternAnalyzer {
 			student.addCourse(new Course(item));
 		}
 		
-		return newStudents; // do not forget to return a proper variable.
+		return newStudents; 
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class HGUCoursePatternAnalyzer {
 			}
 		}
 		
-		return resultStrings; // do not forget to return a proper variable.
+		return resultStrings;
 	}
 	
 	private ArrayList<String> courseTakenAnalyze(Map<String, Student> students, String courseCode, String startYear, String endYear)
